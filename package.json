@@ -1,0 +1,96 @@
+{
+	"name": "data-popover",
+	"version": "0.0.1",
+	"description": "A simple popover library",
+	"browser": "dist/data-popover.min.js",
+	"scripts": {
+		"build": "npm run build:js && npm run build:css",
+		"build:css": "postcss data-popover.css -o dist/data-popover.min.css",
+		"build:js": "terser data-popover.js -o dist/data-popover.min.js --compress --mangle",
+		"format": "npm run format:css && npm run format:html && npm run format:js && npm run format:md",
+		"format:css": "prettier --write '**/*.css' '!dist/*.*'",
+		"format:html": "prettier --write '**/*.html'",
+		"format:js": "prettier --write '**/*.js' '!dist/*.*'",
+		"format:md": "prettier --write '**/*.md'",
+		"lint": "npm run lint:format && npm run lint:js",
+		"lint:format": "npm run lint:format:css && npm run lint:format:html && npm run lint:format:js && npm run lint:format:md",
+		"lint:format:css": "prettier --check '**/*.css' '!dist/*.*'",
+		"lint:format:html": "prettier --check '**/*.html'",
+		"lint:format:js": "prettier --check '**/*.js' '!dist/*.*'",
+		"lint:format:md": "prettier --check '**/*.md'",
+		"lint:js": "eslint --ignore-path .gitignore .",
+		"precommit:build": "npm run build && git add dist",
+		"start": "serve",
+		"test": "npm run test:e2e",
+		"test:e2e": "playwright test -c e2e/playwright.config.js"
+	},
+	"keywords": ["popover", "htmx"],
+	"author": "",
+	"license": "MIT",
+	"repository": "https://github.com/imbolc/data-popover",
+	"homepage": "https://imbolc.github.io/data-popover/",
+	"pre-commit": [
+		"lint:js",
+		"lint:format:css",
+		"lint:format:html",
+		"lint:format:js",
+		"lint:format:md",
+		"precommit:build",
+		"test:e2e"
+	],
+	"devDependencies": {
+		"@playwright/test": "^1.53.2",
+		"autoprefixer": "^10.4.21",
+		"cssnano": "^7.0.7",
+		"cssnano-cli": "^1.0.5",
+		"eslint": "^8.57.1",
+		"playwright": "^1.53.2",
+		"postcss": "^8.5.6",
+		"postcss-cli": "^11.0.1",
+		"pre-commit": "^1.2.2",
+		"prettier": "^3.6.2",
+		"serve": "^14.2.0",
+		"terser": "^5.43.1"
+	},
+	"eslintConfig": {
+		"env": {
+			"browser": true,
+			"es2021": true,
+			"node": true
+		},
+		"extends": "eslint:recommended",
+		"parserOptions": {
+			"ecmaVersion": 12,
+			"sourceType": "module"
+		},
+		"rules": {}
+	},
+	"prettier": {
+		"arrowParens": "always",
+		"bracketSameLine": false,
+		"bracketSpacing": true,
+		"printWidth": 80,
+		"quoteProps": "as-needed",
+		"semi": true,
+		"singleQuote": false,
+		"tabWidth": 2,
+		"trailingComma": "all",
+		"useTabs": true,
+		"overrides": [
+			{
+				"files": "*.html",
+				"options": {
+					"tabWidth": 2,
+					"useTabs": false
+				}
+			}
+		]
+	},
+	"browserslist": ["defaults"],
+	"postcss": {
+		"plugins": {
+			"autoprefixer": {},
+			"cssnano": {}
+		}
+	}
+}

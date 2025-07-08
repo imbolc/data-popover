@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <link rel="stylesheet" href="../../data-popover.css" />
+  <script src="../../data-popover.js"></script>
+  <h1>Flipping</h1>
+
+  <h2>Flipping using default fallback</h2>
+  <button id="flip-right" data-popover="left">Click me</button>
+  <div popover>I should be on the right</div>
+
+  <h2>Flipping using custom fallback</h2>
+  <button
+    id="flip-bottom-start"
+    data-popover="left"
+    data-popover-placement-fallback="ls le bs r"
+  >
+    Click me too
+  </button>
+  <div popover>I should be at the bottom-start</div>
+</html>

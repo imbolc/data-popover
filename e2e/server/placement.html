@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../data-popover.css" />
+  <script src="../../data-popover.js"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    section {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+    }
+    section > div {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  </style>
+  <body>
+    <h1>Popover placement</h1>
+
+    <section>
+      <div>
+        <button id="data-top-start-btn" data-popover="top-start">
+          Top-Start
+        </button>
+        <div popover>Top-Start Popover</div>
+
+        <button id="data-top-btn" data-popover="top">Top</button>
+        <div popover>Top Popover</div>
+
+        <button id="data-top-end-btn" data-popover="top-end">Top-End</button>
+        <div popover>Top-End Popover</div>
+      </div>
+
+      <div>
+        <button id="data-right-start-btn" data-popover="right-start">
+          Right-Start
+        </button>
+        <div popover>Right-Start Popover</div>
+
+        <button id="data-right-btn" data-popover="right">Right</button>
+        <div popover>Right Popover</div>
+
+        <button id="data-right-end-btn" data-popover="right-end">
+          Right-End
+        </button>
+        <div popover>Right-End Popover</div>
+      </div>
+
+      <div>
+        <button id="data-bottom-start-btn" data-popover="bottom-start">
+          Bottom-Start
+        </button>
+        <div popover>Bottom-Start Popover</div>
+
+        <button id="data-bottom-btn" data-popover="bottom">Bottom</button>
+        <div popover>Bottom Popover</div>
+
+        <button id="data-bottom-end-btn" data-popover="bottom-end">
+          Bottom-End
+        </button>
+        <div popover>Bottom-End Popover</div>
+      </div>
+
+      <div>
+        <button id="data-left-start-btn" data-popover="left-start">
+          Left-Start
+        </button>
+        <div popover>Left-Start Popover</div>
+
+        <button id="data-left-btn" data-popover="left">Left</button>
+        <div popover>Left Popover</div>
+
+        <button id="data-left-end-btn" data-popover="left-end">Left-End</button>
+        <div popover>Left-End Popover</div>
+      </div>
+    </section>
+  </body>
+</html>

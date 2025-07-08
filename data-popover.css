@@ -1,0 +1,217 @@
+[data-popover] + [popover] {
+	--arrow-width: 8px;
+	--arrow-height: 16px;
+	--border-width: 1px;
+	--border-color: #e5e6e8;
+	--bg-color: #fff;
+
+	padding: 0.7rem 0.7rem;
+	background: var(--bg-color);
+	border: var(--border-width) solid var(--border-color);
+	border-radius: 5px;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+	z-index: 1000;
+	position: absolute;
+	margin: 0;
+	overflow: visible;
+	left: 0;
+	top: 0;
+	animation: data-popover-fade-in 150ms ease-in-out;
+	pointer-events: auto;
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		pointer-events: none;
+	}
+
+	&[data-popover-loc="r"],
+	&[data-popover-loc="rs"],
+	&[data-popover-loc="re"] {
+		&::before {
+			width: var(--arrow-width);
+			height: var(--arrow-height);
+			background: var(--border-color);
+			clip-path: polygon(100% 0, 0 50%, 100% 100%);
+			top: 50%;
+			right: 100%;
+			transform: translateY(-50%);
+		}
+		&::after {
+			width: var(--arrow-width);
+			height: var(--arrow-height);
+			background: var(--bg-color);
+			clip-path: polygon(100% 0, 0 50%, 100% 100%);
+			top: 50%;
+			right: 100%;
+			transform: translateY(-50%) translateX(var(--border-width));
+		}
+	}
+
+	&[data-popover-loc="rs"] {
+		&::before {
+			top: var(--arrow-width);
+			transform: translateY(0);
+		}
+		&::after {
+			top: var(--arrow-width);
+			transform: translateY(0) translateX(var(--border-width));
+		}
+	}
+
+	&[data-popover-loc="re"] {
+		&::before {
+			top: calc(100% - var(--arrow-width));
+			transform: translateY(-100%);
+		}
+		&::after {
+			top: calc(100% - var(--arrow-width));
+			transform: translateY(-100%) translateX(var(--border-width));
+		}
+	}
+
+	&[data-popover-loc="l"],
+	&[data-popover-loc="ls"],
+	&[data-popover-loc="le"] {
+		&::before {
+			width: var(--arrow-width);
+			height: var(--arrow-height);
+			background: var(--border-color);
+			clip-path: polygon(0 0, 100% 50%, 0 100%);
+			top: 50%;
+			left: 100%;
+			transform: translateY(-50%);
+		}
+		&::after {
+			width: var(--arrow-width);
+			height: var(--arrow-height);
+			background: var(--bg-color);
+			clip-path: polygon(0 0, 100% 50%, 0 100%);
+			top: 50%;
+			left: 100%;
+			transform: translateY(-50%) translateX(calc(-1 * var(--border-width)));
+		}
+	}
+
+	&[data-popover-loc="ls"] {
+		&::before {
+			top: var(--arrow-width);
+			transform: translateY(0);
+		}
+		&::after {
+			top: var(--arrow-width);
+			transform: translateY(0) translateX(calc(-1 * var(--border-width)));
+		}
+	}
+
+	&[data-popover-loc="le"] {
+		&::before {
+			top: calc(100% - var(--arrow-width));
+			transform: translateY(-100%);
+		}
+		&::after {
+			top: calc(100% - var(--arrow-width));
+			transform: translateY(-100%) translateX(calc(-1 * var(--border-width)));
+		}
+	}
+
+	&[data-popover-loc="b"],
+	&[data-popover-loc="bs"],
+	&[data-popover-loc="be"] {
+		&::before {
+			width: var(--arrow-height);
+			height: var(--arrow-width);
+			background: var(--border-color);
+			clip-path: polygon(0 100%, 100% 100%, 50% 0);
+			bottom: 100%;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		&::after {
+			width: var(--arrow-height);
+			height: var(--arrow-width);
+			background: var(--bg-color);
+			clip-path: polygon(0 100%, 100% 100%, 50% 0);
+			bottom: 100%;
+			left: 50%;
+			transform: translateX(-50%) translateY(var(--border-width));
+		}
+	}
+
+	&[data-popover-loc="bs"] {
+		&::before {
+			left: var(--arrow-height);
+			transform: translateX(0);
+		}
+		&::after {
+			left: var(--arrow-height);
+			transform: translateX(0) translateY(var(--border-width));
+		}
+	}
+
+	&[data-popover-loc="be"] {
+		&::before {
+			left: calc(100% - var(--arrow-height));
+			transform: translateX(-100%);
+		}
+		&::after {
+			left: calc(100% - var(--arrow-height));
+			transform: translateX(-100%) translateY(var(--border-width));
+		}
+	}
+
+	&[data-popover-loc="t"],
+	&[data-popover-loc="ts"],
+	&[data-popover-loc="te"] {
+		&::before {
+			width: var(--arrow-height);
+			height: var(--arrow-width);
+			background: var(--border-color);
+			clip-path: polygon(0 0, 100% 0, 50% 100%);
+			top: 100%;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		&::after {
+			width: var(--arrow-height);
+			height: var(--arrow-width);
+			background: var(--bg-color);
+			clip-path: polygon(0 0, 100% 0, 50% 100%);
+			top: 100%;
+			left: 50%;
+			transform: translateX(-50%) translateY(calc(-1 * var(--border-width)));
+		}
+	}
+
+	&[data-popover-loc="ts"] {
+		&::before {
+			left: var(--arrow-height);
+			transform: translateX(0);
+		}
+		&::after {
+			left: var(--arrow-height);
+			transform: translateX(0) translateY(calc(-1 * var(--border-width)));
+		}
+	}
+
+	&[data-popover-loc="te"] {
+		&::before {
+			left: calc(100% - var(--arrow-height));
+			transform: translateX(-100%);
+		}
+		&::after {
+			left: calc(100% - var(--arrow-height));
+			transform: translateX(-100%) translateY(calc(-1 * var(--border-width)));
+		}
+	}
+}
+
+@keyframes data-popover-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
