@@ -15,14 +15,14 @@
 		"lint": "npm run lint:format && npm run lint:js",
 		"lint:format": "npm run lint:format:css && npm run lint:format:html && npm run lint:format:js && npm run lint:format:md",
 		"lint:format:css": "prettier --check '**/*.css' '!dist/*.*'",
-		"lint:format:html": "prettier --check '**/*.html'",
+		"lint:format:html": "prettier --check '**/*.html' '!test/e2e/report/*.*'",
 		"lint:format:js": "prettier --check '**/*.js' '!dist/*.*'",
 		"lint:format:md": "prettier --check '**/*.md'",
 		"lint:js": "eslint --ignore-path .gitignore .",
 		"precommit:build": "npm run build && git add dist",
 		"start": "serve",
 		"test": "npm run test:e2e",
-		"test:e2e": "playwright test -c e2e/playwright.config.js"
+		"test:e2e": "playwright test -c test/e2e/playwright.config.js"
 	},
 	"keywords": ["popover", "htmx"],
 	"author": "",

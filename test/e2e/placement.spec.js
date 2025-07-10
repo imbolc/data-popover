@@ -2,7 +2,7 @@ const { test } = require("@playwright/test");
 const { clickAndTestPlacement } = require("./utils.js");
 
 test.beforeEach(async ({ page }) => {
-	await page.goto("/e2e/server/placement.html");
+	await page.goto("/test/e2e/server/placement.html");
 });
 
 test("data-popover: top-start", async ({ page }) => {

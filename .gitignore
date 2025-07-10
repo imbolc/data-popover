@@ -1,6 +1,6 @@
 /CLAUDE.md
 /GEMINI.md
-/e2e/report/
-/e2e/results/
+/test/e2e/report/
+/test/e2e/results/
 /node_modules/
 /package-lock.json

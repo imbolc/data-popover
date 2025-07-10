@@ -33,7 +33,7 @@ async function testTrigger(page, triggerSelector) {
 }
 
 test.beforeEach(async ({ page }) => {
-	await page.goto("/e2e/server/default.html");
+	await page.goto("/test/e2e/server/default.html");
 });
 
 test("for buttons browsers toggle visibility natively", async ({ page }) => {

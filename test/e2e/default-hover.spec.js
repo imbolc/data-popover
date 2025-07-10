@@ -22,7 +22,7 @@ async function testHoverTrigger(page, triggerSelector) {
 }
 
 test.beforeEach(async ({ page }) => {
-	await page.goto("/e2e/server/default-hover.html");
+	await page.goto("/test/e2e/server/default-hover.html");
 });
 
 test("button", async ({ page }) => {
