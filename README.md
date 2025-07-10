@@ -7,12 +7,19 @@ Look at the [docs & demo](https://imbolc.github.io/data-popover/).
 ## Features
 
 - No dependencies
-- Configures via HTML attributes
-- Pairs well with HTMx
+- Declarative configuration via HTML attributes
+- Any element (not only buttons) works
+  [as a trigger](https://imbolc.github.io/data-popover/#trigge-element)
+- [Placement preferences](https://imbolc.github.io/data-popover/#placement) with
+  [auto flipping](https://imbolc.github.io/data-popover/#flipping)
+- [Pairs well with HTMx](https://imbolc.github.io/data-popover/#htmx)
+- [Supports hover event](https://imbolc.github.io/data-popover/#hover)
+- [Appearance customization](https://imbolc.github.io/data-popover/#styling)
+- [Nested Popovers](https://imbolc.github.io/data-popover/#nested)
 
 ## Installation
 
-Download minimized version from the [`./dist`](./dist) folder or use CDN:
+Download the minimized version from the [`./dist`](./dist) folder or use CDN:
 
 ```html
 <link
@@ -24,17 +31,11 @@ Download minimized version from the [`./dist`](./dist) folder or use CDN:
 
 ## Usage
 
-To create a popover, add a `data-popover` attribute to a trigger element, and a
-`popover` attribute to the element that will be the popover. The popover element
-must be the immediate next sibling of the trigger element.
+1. Add a `data-popover` attribute to a trigger element.
+2. Place a popover element with the native `popover` attribute immediately after
+   the trigger.
 
 ```html
-<button data-popover="bottom">Click me</button>
+<button data-popover>Click me</button>
 <div popover>Popover content</div>
 ```
-
-## Styling
-
-Appearance customization is supported via CSS variables you can find at the top
-of [`./src/data-popover.css`](./src/data-popover.css). Look at the
-[theming](https://imbolc.github.io/data-popover/#theming) example.

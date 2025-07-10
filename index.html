@@ -3,50 +3,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>data-popover example</title>
 <link rel="stylesheet" href="dist/data-popover.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/modern-normalize/modern-normalize.min.css"
+/>
+<link
+  href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css"
+  rel="stylesheet"
+/>
 <script src="dist/data-popover.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
 
 <style>
+  h2 {
+    margin: 4rem 0 2rem;
+  }
+  code {
+    background: lightcyan;
+    padding: 0 5px;
+  }
+  a {
+    color: blue;
+  }
+  details[data-code] {
+    margin: 2rem;
+  }
   main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    padding: 2rem;
-  }
-
-  .dark-theme [data-popover] + [popover] {
-    --border-color: #444;
-    --bg-color: #1a1a1a;
-    color: #e0e0e0;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-  }
-
-  #placement {
-    button {
-      padding: 1em 0.5em;
-      width: 100%;
-    }
-
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-
-    > div {
-      display: flex;
-      gap: 2em;
-      justify-content: space-between;
-    }
-    .stretch {
-      display: flex;
-      gap: 1em;
-
-      > div {
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-        justify-content: space-between;
-      }
+    padding: 0 1rem;
+    p {
+      max-width: 800px;
+      line-height: 1.5;
     }
   }
 </style>
@@ -54,254 +43,272 @@
 <main>
   <h1>data-popover</h1>
 
-  <h2>HTMx</h2>
+  <h2 id="trigger-element">Trigger element</h2>
 
-  <button data-popover>Load by HTMx</button>
-  <div popover hx-get="/" hx-trigger="data-popover:show">Loading ...</div>
+  <p>
+    Any element could trigger a popover. Just add the
+    <code>data-popover</code> attribute to it and place a popover element with
+    the native `popover` attribute immediately after it.
+  </p>
 
-  <h2>Placement</h2>
-  <section id="placement">
+  <div style="display: flex; align-items: center; gap: 1em">
+    <button data-popover>Click Me</button>
+    <div popover>Hey</div>
+    or
+    <a href="#" data-popover data-popover-trigger="hover">Hover Me</a>
+    <div popover>There</div>
+  </div>
+  <details data-code></details>
+
+  <h2 id="placement">Placement</h2>
+  <style>
+    #placement-example {
+      button {
+        padding: 1em 0.5em;
+        width: 100%;
+      }
+
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      > div {
+        display: flex;
+        gap: 2em;
+        justify-content: space-between;
+      }
+      > div:nth-child(2) {
+        > div {
+          display: flex;
+          flex-direction: column;
+          gap: 1em;
+          justify-content: space-between;
+        }
+      }
+    }
+  </style>
+  <p>
+    You can define a preferred placement direction by passing a value to the
+    <code>data-popover</code> attribute.
+  </p>
+  <br /><br /><br />
+  <div id="placement-example">
     <div>
       <button data-popover="top-start">top-start</button>
-      <div popover="manual">Popover</div>
+      <div popover>Popover</div>
 
-      <button data-popover="top">Top</button>
-      <div popover="manual">Popover</div>
+      <button data-popover="top">top</button>
+      <div popover>Popover</div>
 
       <button data-popover="top-end">top-end</button>
-      <div popover="manual">Popover</div>
+      <div popover>Popover</div>
     </div>
 
-    <div class="stretch">
+    <div>
       <div>
         <button data-popover="left-start">left-start</button>
-        <div popover="manual">Popover</div>
+        <div popover>Popover</div>
 
         <button data-popover="left">left</button>
-        <div popover="manual">Popover</div>
+        <div popover>Popover</div>
 
         <button data-popover="left-end">left-end</button>
-        <div popover="manual">Popover</div>
+        <div popover>Popover</div>
       </div>
 
       <div>
         <button data-popover="right-start">right-start</button>
-        <div popover="manual">Popover</div>
+        <div popover>Popover</div>
 
         <button data-popover="right">right</button>
-        <div popover="manual">Popover</div>
+        <div popover>Popover</div>
 
         <button data-popover="right-end">right-end</button>
-        <div popover="manual">Popover</div>
+        <div popover>Popover</div>
       </div>
     </div>
 
     <div>
       <button data-popover="bottom-start">bottom-start</button>
-      <div popover="manual">Popover</div>
+      <div popover>Popover</div>
 
       <button data-popover="bottom">bottom</button>
-      <div popover="manual">Popover</div>
+      <div popover>Popover</div>
 
       <button data-popover="bottom-end">bottom-end</button>
-      <div popover="manual">Popover</div>
+      <div popover>Popover</div>
     </div>
+  </div>
+  <details style="margin-top: 5rem" data-code></details>
 
-    <script>
-      document.currentScript.parentElement
-        .querySelectorAll("[data-popover]")
-        .forEach((el) => el.click());
-    </script>
-  </section>
-
-  <h2>Normal</h2>
-  <button data-popover>Bottom (default)</button>
-  <div popover>Popover on the bottom</div>
-
-  <button data-popover="right">Right</button>
-  <div popover>Popover on the right</div>
-
-  <button data-popover="left">Left</button>
-  <div popover>Popover on the left</div>
-
-  <button data-popover="top">Top (data attributes)</button>
-  <div popover>Popover on the top</div>
-
-  <h2>Hover Triggers</h2>
+  <h2 id="flipping">Auto-flipping</h2>
   <p>
-    Popovers can be triggered by hover or click. Use the following attributes:
-  </p>
-  <ul>
-    <li><code>data-popover-trigger="hover"</code> - Show on hover</li>
-    <li><code>data-popover-trigger="click"</code> - Show on click (default)</li>
-    <li>
-      <code>data-popover-hover-delay="500"</code> - Delay before showing on
-      hover (ms)
-    </li>
-    <li>
-      <code>data-popover-hover-out-delay="100"</code> - Delay before hiding on
-      mouse leave (ms, default: 100)
-    </li>
-  </ul>
-  <p>
-    <strong>Note:</strong> Hover popovers stay open when you move your mouse
-    between the trigger and the popover content. The default 100ms hide delay
-    provides a grace period for traversing any gap between them.
-  </p>
-  <p>
-    <strong>Touch devices:</strong> Hover triggers automatically fall back to
-    click on touch devices for better usability.
+    As you probably noticed, the above popovers flipped when you scroll the
+    page. You can set up a flip fallback sequence using the
+    <code>data-popover-placement-fallback</code> attribute. Its value is a
+    space-separated sequence of short direction notations, e.g.,
+    <code>"t ls l"</code> means "top left-start left". For the default sequence
+    for each direction, look at the <code>DEFAULT_PLACEMENT_FALLBACK</code>
+    variable.
   </p>
 
-  <button data-popover data-popover-trigger="hover" data-popover="right">
-    Hover me
-  </button>
-  <div popover>I appear on hover!</div>
+  <h2 id="hover">Hover Triggers</h2>
 
-  <button
-    data-popover
-    data-popover-trigger="hover"
-    data-popover-hover-delay="500"
-    data-popover="bottom"
-  >
-    Hover with delay
-  </button>
-  <div popover>I appear after 500ms!</div>
-
-  <button
-    data-popover
-    data-popover-trigger="hover"
-    data-popover-hover-out-delay="0"
-    data-popover="left"
-  >
-    Instant hide
-  </button>
-  <div popover>I hide immediately when mouse leaves (no grace period)</div>
-
-  <h2 id="theming">Theming</h2>
-  <p>
-    Customize popover appearance using CSS custom properties. Here's a dark
-    theme:
-  </p>
-
-  <div
-    class="dark-theme"
-    style="
-      background: #2a2a2a;
-      padding: 2rem;
-      border-radius: 8px;
-      margin: 1rem 0;
-    "
-  >
-    <button
-      data-popover
-      style="background: #444; color: #fff; border: 1px solid #666"
-    >
-      Dark Theme
-    </button>
-    <div popover>I'm a dark themed popover!</div>
+  <div style="display: flex; gap: 1em">
+    <button data-popover data-popover-trigger="hover">Hover Me</button>
+    <div popover>Popover</div>
 
     <button
       data-popover
       data-popover-trigger="hover"
-      data-popover="right"
-      style="
-        background: #444;
-        color: #fff;
-        border: 1px solid #666;
-        margin-left: 1rem;
-      "
+      data-popover-hover-delay="500"
     >
-      Hover Dark
+      And Me
     </button>
-    <div popover>Dark theme works with all features</div>
+    <div popover>I appear after 500ms!</div>
   </div>
+  <details data-code></details>
 
-  <details style="margin: 1rem 0">
-    <summary>How to create a dark theme</summary>
-    <pre
-      style="
-        background: #f5f5f5;
-        padding: 1rem;
-        border-radius: 4px;
-        overflow-x: auto;
-      "
-    >
-/* Dark theme CSS */
-.dark-theme [data-popover-popover] {
-  --data-popover-border-color: #444;
-  --data-popover-bg-color: #1a1a1a;
-  color: #e0e0e0;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-}</pre
-    >
-  </details>
+  <table border="1" cellpadding="7" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>data-popover-trigger="hover"</code></td>
+        <td>show the popover on hover</td>
+        <td>"click"</td>
+      </tr>
+      <tr>
+        <td><code>data-popover-hover-delay="500"</code></td>
+        <td>delay in milliseconds before showing the popover on hover</td>
+        <td>150</td>
+      </tr>
+      <tr>
+        <td><code>data-popover-hover-out-delay="100"</code></td>
+        <td>delay in milliseconds before hiding the popover on mouse leave</td>
+        <td>150</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    <i>
+      Hover triggers automatically <b>fall back to click on touch devices</b>.
+    </i>
+  </p>
 
-  <div
-    style="
-      margin: 3rem 0;
-      padding: 2rem;
-      border: 2px dashed #ccc;
-      border-radius: 8px;
-    "
-  >
-    <h2>Dynamic Content Example</h2>
-    <p>Click the button below to add new popover triggers dynamically:</p>
-    <button id="add-popover-btn" style="margin: 1rem 0">
-      Add Dynamic Popover
-    </button>
-    <div
-      id="dynamic-popovers"
-      style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem"
-    ></div>
+  <h2 id="htmx">HTMX integration</h2>
+
+  <p>
+    You can listen to the <code>`data-popover:show`</code> event to load popover
+    content when it's shown
+  </p>
+
+  <div>
+    <button data-popover>Load by hx-get</button>
+    <div popover hx-get="/" hx-trigger="data-popover:show">Loading ...</div>
   </div>
+  <details data-code></details>
 
-  <div
-    style="
-      margin: 3rem 0;
-      padding: 2rem;
-      border: 2px dashed #ccc;
-      border-radius: 8px;
-    "
-  >
-    <h2>Nested Popovers</h2>
+  <h2 id="styling">Styling</h2>
+
+  <p>
+    Appearance customization is supported via CSS variables you can find at the
+    top of
+    <a
+      href="https://github.com/imbolc/data-popover/blob/main/src/data-popover.css"
+      >data-popover.css</a
+    >.
+  </p>
+  <p>
+    Customize the popover appearance using CSS custom properties. Here's a dark
+    theme:
+  </p>
+
+  <div style="background: #2a2a2a; padding: 2rem 5rem 5rem">
+    <style>
+      .dark-theme {
+        [data-popover] + [popover] {
+          --border-color: #444;
+          --bg-color: #1a1a1a;
+          color: #e0e0e0;
+        }
+        button {
+          background: #444;
+          color: #fff;
+          border: 1px solid #666;
+        }
+      }
+    </style>
+    <div class="dark-theme">
+      <button data-popover>Click Me</button>
+      <div popover>I'm dark!</div>
+    </div>
+  </div>
+  <details data-code></details>
+
+  <h2 id="nested">Nested Popovers</h2>
+  <div>
     <button data-popover>Open Parent Popover</button>
     <div popover>
-      <p>This is the parent popover.</p>
-      <button data-popover data-popover="right">Open Nested Popover</button>
+      <button data-popover="right">Open Nested Popover</button>
       <div popover>This is a nested popover!</div>
     </div>
   </div>
+  <details data-code></details>
 </main>
 
+<footer style="text-align: center; margin: 2rem">
+  <a href="https://github.com/imbolc/data-popover">github repo</a>
+</footer>
+
 <script>
-  // Demo: Add dynamic popovers
-  let dynamicCount = 0;
-  document.getElementById("add-popover-btn").addEventListener("click", () => {
-    dynamicCount++;
-    const container = document.getElementById("dynamic-popovers");
+  /// Automatically feel code details from the previous sibling
+  document.querySelectorAll("details[data-code]").forEach((details) => {
+    // Skip if already filled
+    if (details.dataset.filled) return;
 
-    // Create button and popover pair
-    const button = document.createElement("button");
-    button.setAttribute("data-popover", "");
-    button.setAttribute(
-      "data-popover",
-      ["top", "right", "bottom", "left"][dynamicCount % 4],
-    );
+    const prev = details.previousElementSibling;
+    if (!prev) throw Error(`No prev element for ${details}`);
 
-    // Mix of trigger types for demo
-    if (dynamicCount % 2 === 0) {
-      button.setAttribute("data-popover-trigger", "hover");
-      button.textContent = `Dynamic ${dynamicCount} (hover)`;
-    } else {
-      button.textContent = `Dynamic ${dynamicCount} (click)`;
-    }
+    const language = details.dataset.code || "html";
+    const sourceHtml = prev.innerHTML
+      .trim()
+      // don't show `=""` for empty attributes
+      .replace(/\s+([a-zA-Z0-9-]+)=["']["']/g, " $1");
 
-    const popover = document.createElement("div");
-    popover.setAttribute("popover", "");
-    popover.textContent = `I'm dynamic popover #${dynamicCount}!`;
+    const summary = document.createElement("summary");
+    summary.textContent = "Show Code";
 
-    container.appendChild(button);
-    container.appendChild(popover);
+    const pre = document.createElement("pre");
+    const code = document.createElement("code");
+
+    code.classList.add(`language-${language}`);
+    code.textContent = `    ${sourceHtml}`;
+
+    pre.appendChild(code);
+
+    details.innerHTML = "";
+    details.appendChild(summary);
+    details.appendChild(pre);
+
+    details.dataset.filled = "true";
   });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<script>
+  /// Open placement popovers
+  document
+    .getElementById("placement-example")
+    .querySelectorAll("[popover]")
+    .forEach((el) => {
+      el.setAttribute("popover", "manual");
+      el.previousElementSibling.click();
+    });
 </script>
