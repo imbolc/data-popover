@@ -5,8 +5,8 @@
 	"browser": "dist/data-popover.min.js",
 	"scripts": {
 		"build": "npm run build:js && npm run build:css",
-		"build:css": "postcss data-popover.css -o dist/data-popover.min.css",
-		"build:js": "terser data-popover.js -o dist/data-popover.min.js --compress --mangle",
+		"build:css": "postcss src/data-popover.css -o dist/data-popover.min.css",
+		"build:js": "terser src/data-popover.js -o dist/data-popover.min.js --compress --mangle",
 		"format": "npm run format:css && npm run format:html && npm run format:js && npm run format:md",
 		"format:css": "prettier --write '**/*.css' '!dist/*.*'",
 		"format:html": "prettier --write '**/*.html'",

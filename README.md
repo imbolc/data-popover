@@ -36,5 +36,5 @@ must be the immediate next sibling of the trigger element.
 ## Styling
 
 Appearance customization is supported via CSS variables you can find at the top
-of [`./data-popover.css`](./data-popover.css). Look at the
+of [`./src/data-popover.css`](./src/data-popover.css). Look at the
 [theming](https://imbolc.github.io/data-popover/#theming) example.

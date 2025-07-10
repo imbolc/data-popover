@@ -1,16 +1,12 @@
 ## Project goal
 
-It's a simple JS popover library called DataPopover
-
-- The library doesn't depend on any CSS or JS frameworks
-- It plays well with HTMx
+Read `./README.md` to understand the project goal and features.
 
 ## Project rules
 
 ### Structure
 
-- All the library JS code is in `./data-popover.js`
-- All the library CSS code is in `./data-popover.css`
+- Source code is in `./src` folder
 - Tests are in `./e2e/`, test's config is in `./e2e/playwright.config.js`
 - Minimized code is in `./dist`, don't look into it nor change it's content
 - Don't edit `./package-lock.json` as it's generated automatically
