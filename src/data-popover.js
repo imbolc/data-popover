@@ -1,6 +1,5 @@
 ((window) => {
 	function isTouchDevice() {
-		// Comprehensive touch detection
 		return (
 			"ontouchstart" in window ||
 			"ontouchstart" in document.documentElement ||
@@ -267,27 +266,25 @@
 					popRect,
 				);
 
-				// The real popover placement used in styles
-				this.popoverEl.dataset.popoverLoc = shortPlacementName(bestPlacement);
-
 				// Add scroll offsets to convert from viewport to page coordinates
 				left += window.scrollX;
 				top += window.scrollY;
 
-				this.popoverEl.style.left = `${left}px`;
-				this.popoverEl.style.top = `${top}px`;
+				const leftChanged =
+					Math.round(this.popoverEl.style.left) !== Math.round(left);
+				const topChanged =
+					Math.round(this.popoverEl.style.top) !== Math.round(top);
 
-				// Recursively reposition any open nested popovers
-				for (const nestedPopoverEl of this.popoverEl.querySelectorAll(
-					"[popover]:popover-open",
-				)) {
-					const nestedTriggerEl = nestedPopoverEl.previousElementSibling;
-					if (nestedTriggerEl) {
-						const nestedInstance = instances.get(nestedTriggerEl);
-						if (nestedInstance) {
-							nestedInstance.positionPopover();
-						}
-					}
+				if (leftChanged) {
+					this.popoverEl.style.left = `${left}px`;
+				}
+				if (topChanged) {
+					this.popoverEl.style.top = `${top}px`;
+				}
+
+				if (leftChanged || topChanged) {
+					// The real popover placement used in styles
+					this.popoverEl.dataset.popoverLoc = shortPlacementName(bestPlacement);
 				}
 			});
 		}
@@ -336,39 +333,35 @@
 		}
 	});
 
-	window.addEventListener(
-		"scroll",
-		throttle(() => {
-			for (const popoverEl of document.querySelectorAll(
-				"[popover]:popover-open",
-			)) {
-				const triggerEl = popoverEl.previousElementSibling;
-				if (triggerEl) {
-					const instance = instances.get(triggerEl);
-					if (instance) {
-						instance.positionPopover();
-					}
+	/// Ensures all opened popovers are correctly positioned
+	function ensureAllPositions() {
+		for (const popoverEl of document.querySelectorAll(
+			"[popover]:popover-open",
+		)) {
+			const triggerEl = popoverEl.previousElementSibling;
+			if (triggerEl) {
+				const instance = instances.get(triggerEl);
+				if (instance) {
+					instance.positionPopover();
 				}
 			}
-		}, 15),
-	);
+		}
+	}
 
-	window.addEventListener(
-		"resize",
-		debounce(() => {
-			for (const popoverEl of document.querySelectorAll(
-				"[popover]:popover-open",
-			)) {
-				const triggerEl = popoverEl.previousElementSibling;
-				if (triggerEl) {
-					const instance = instances.get(triggerEl);
-					if (instance) {
-						instance.positionPopover();
-					}
-				}
-			}
-		}, 15),
-	);
+	window.addEventListener("scroll", throttle(ensureAllPositions, 15));
+	window.addEventListener("resize", debounce(ensureAllPositions, 15));
+
+	document.addEventListener("DOMContentLoaded", () => {
+		// We have to observe layout shifts to reposition opened popovers
+		new MutationObserver(debounce(ensureAllPositions, 15)).observe(
+			document.body,
+			{
+				childList: true,
+				subtree: true,
+				attributes: true,
+			},
+		);
+	});
 
 	const DEFAULT_PLACEMENT_FALLBACK = {
 		t: "b r l",

@@ -2,7 +2,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>data-popover example</title>
-<link rel="stylesheet" href="dist/data-popover.min.css" />
+<link rel="stylesheet" href="src/data-popover.css" />
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/modern-normalize/modern-normalize.min.css"
@@ -11,7 +11,7 @@
   href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css"
   rel="stylesheet"
 />
-<script src="dist/data-popover.min.js"></script>
+<script src="src/data-popover.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
 
 <style>
@@ -210,7 +210,13 @@
 
   <div>
     <button data-popover>Load by hx-get</button>
-    <div popover hx-get="/" hx-trigger="data-popover:show">Loading ...</div>
+    <div
+      popover
+      hx-get="test/e2e/server/default"
+      hx-trigger="data-popover:show"
+    >
+      Loading ...
+    </div>
   </div>
   <details data-code></details>
 
