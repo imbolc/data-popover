@@ -38,6 +38,7 @@
 	}
 
 	const instances = new WeakMap();
+	let popoverIdCounter = 0;
 
 	class Popover {
 		constructor(triggerEl) {
@@ -82,7 +83,7 @@
 			this.popoverHovered = false;
 
 			if (!this.popoverEl.id) {
-				this.popoverEl.id = `data-popover-${Math.random().toString(36).slice(2, 11)}`;
+				this.popoverEl.id = `data-popover_${++popoverIdCounter}`;
 			}
 
 			if (this.trigger !== "hover") {
