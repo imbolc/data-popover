@@ -1,8 +1,7 @@
 ((window) => {
-	// Checks if the primary input mechanism is a coarse pointer, like a finger on a touchscreen.
-	// This is a more reliable way to detect touch-first devices than user agent sniffing
-	// or checking for `ontouchstart`.
-	function isPrimaryInputCoarse() {
+	// Detects touch-first devices by checking for a coarse primary input mechanism (pointer: coarse).
+	// This is more reliable than user agent sniffing or `ontouchstart`.
+	function isTouchDevice() {
 		return window.matchMedia?.("(pointer: coarse)").matches;
 	}
 
@@ -64,7 +63,7 @@
 
 			this.trigger = this.triggerEl.dataset.popoverTrigger || "click";
 
-			if (this.trigger === "hover" && isPrimaryInputCoarse()) {
+			if (this.trigger === "hover" && isTouchDevice()) {
 				// Fall back to click behavior on touch devices
 				this.trigger = "click";
 			}
@@ -291,9 +290,8 @@
 		const trigger = e.target.closest?.("[data-popover]");
 		if (!trigger) return;
 
-		const triggerType = trigger.dataset.popoverTrigger || "click";
-		if (triggerType === "hover") {
-			// Let the default action for a click on a hover-triggered element happen
+		if (trigger.dataset.popoverTrigger === "hover" && !isTouchDevice()) {
+			// The popover on this device is triggered on hover
 			return;
 		}
 
@@ -324,13 +322,8 @@
 	document.addEventListener("mouseover", (e) => {
 		const trigger = e.target.closest?.("[data-popover]");
 		if (trigger && !instances.has(trigger)) {
-			const triggerType =
-				trigger.dataset.popoverTrigger ||
-				trigger.getAttribute("data-popover-trigger") ||
-				"click";
-
 			// Only initialize hover triggers on non-touch devices
-			if (triggerType === "hover" && !isPrimaryInputCoarse()) {
+			if (trigger.dataset.popoverTrigger === "hover" && !isTouchDevice()) {
 				new Popover(trigger);
 			}
 		}
