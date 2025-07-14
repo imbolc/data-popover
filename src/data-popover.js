@@ -83,7 +83,7 @@
 			this.popoverHovered = false;
 
 			if (!this.popoverEl.id) {
-				this.popoverEl.id = `data-popover_${++popoverIdCounter}`;
+				this.popoverEl.id = `data-popover-${++popoverIdCounter}`;
 			}
 
 			if (this.trigger !== "hover") {
