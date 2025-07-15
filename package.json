@@ -1,6 +1,6 @@
 {
 	"name": "data-popover",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "A simple wrapper around the native Popover API",
 	"browser": "dist/data-popover.min.js",
 	"scripts": {

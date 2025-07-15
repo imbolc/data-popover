@@ -1,0 +1,22 @@
+<div
+  hx-get="test/htmx-partials/hx-preserve"
+  hx-trigger="load delay:2s"
+  hx-swap="outerHTML"
+  class="visialize-load"
+>
+  <p>
+    This component reloads every 2 seconds. Open the popover to see that it's
+    preserved between reloads.
+  </p>
+
+  <div hx-preserve id="htmx-preserve__popover-with-trigger">
+    <button data-popover>Open Popover</button>
+    <div popover>
+      Content of this popover is preserved using <code>hx-preserve</code>.
+      <p>
+        Though inputs lose focus between updates:
+        <input type="text" value="Try to edit me" />
+      </p>
+    </div>
+  </div>
+</div>

@@ -16,8 +16,11 @@
 	overflow: visible;
 	left: 0;
 	top: 0;
-	animation: data-popover-fade-in 150ms ease-in-out;
 	pointer-events: auto;
+
+	&:not([data-popover-animated]) {
+		animation: data-popover-fade-in 150ms ease-in-out;
+	}
 
 	&::before,
 	&::after {

@@ -46,9 +46,10 @@
   <h2 id="trigger-element">Trigger element</h2>
 
   <p>
-    Any element could trigger a popover. Just add the
-    <code>data-popover</code> attribute to it and place a popover element with
-    the native `popover` attribute immediately after it.
+    Any element can trigger a popover. To do so, add the
+    <code>data-popover</code> attribute to the trigger element and place a
+    popover element with the native <code>popover</code> attribute immediately
+    after it.
   </p>
 
   <div style="display: flex; align-items: center; gap: 1em">
@@ -88,7 +89,7 @@
     }
   </style>
   <p>
-    You can define a preferred placement direction by passing a value to the
+    You can set a preferred placement direction by passing a value to the
     <code>data-popover</code> attribute.
   </p>
   <br /><br /><br />
@@ -143,13 +144,13 @@
 
   <h2 id="flipping">Auto-flipping</h2>
   <p>
-    As you probably noticed, the above popovers flipped when you scroll the
-    page. You can set up a flip fallback sequence using the
+    As you may have noticed, the popovers above flip when you scroll the page.
+    You can define a flip fallback sequence using the
     <code>data-popover-placement-fallback</code> attribute. Its value is a
-    space-separated sequence of short direction notations, e.g.,
-    <code>"t ls l"</code> means "top left-start left". For the default sequence
-    for each direction, look at the <code>DEFAULT_PLACEMENT_FALLBACK</code>
-    variable.
+    space-separated sequence of short direction notations (e.g.,
+    <code>"t ls l"</code> means "top left-start left"). For the default sequence
+    for each direction, see the
+    <code>DEFAULT_PLACEMENT_FALLBACK</code> variable.
   </p>
 
   <h2 id="hover">Hover Triggers</h2>
@@ -203,6 +204,8 @@
 
   <h2 id="htmx">HTMX integration</h2>
 
+  <h3>Lazy-loading popover content</h3>
+
   <p>
     You can listen to the <code>`data-popover:show`</code> event to load popover
     content when it's shown
@@ -217,6 +220,39 @@
     >
       Loading ...
     </div>
+  </div>
+  <details data-code></details>
+
+  <h3>Popover preservation between component reloads</h3>
+  <style>
+    .visialize-load {
+      animation: visialize-load 0.5s;
+      border: 2px solid transparent;
+      padding: 0.5em 1em;
+    }
+
+    @keyframes visialize-load {
+      0% {
+        /* opacity: 0.5; */
+        /* border-color: lightgray; */
+        background: aliceblue;
+      }
+      100% {
+        /* opacity: 1; */
+        /* border-color: transparent; */
+        background: transparent;
+      }
+    }
+  </style>
+  <p>
+    You can preserve an opened popover using <code>hx-preserve</code>. Notice
+    that you have to also preserve the popover trigger element (the easiest way
+    is to add <code>hx-preserve</code> to their wrapper).
+  </p>
+  <div>
+    <button hx-get="test/htmx-partials/hx-preserve" hx-swap="outerHTML">
+      Start reloading
+    </button>
   </div>
   <details data-code></details>
 

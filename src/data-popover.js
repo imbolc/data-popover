@@ -95,6 +95,15 @@
 				if (this.popoverShown) {
 					this.positionPopover();
 					this.popoverEl.dispatchEvent(new CustomEvent("data-popover:show"));
+					this.popoverEl.addEventListener(
+						"animationend",
+						() => {
+							this.popoverEl.setAttribute("data-popover-animated", "true");
+						},
+						{ once: true },
+					);
+				} else {
+					this.popoverEl.removeAttribute("data-popover-animated");
 				}
 			});
 
