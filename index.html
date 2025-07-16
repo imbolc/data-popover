@@ -92,6 +92,40 @@
   </div>
   <details data-code></details>
 
+  <h3 id="hover">Hover Triggers</h3>
+
+  <table border="1" cellpadding="7" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>data-popover-trigger="hover"</code></td>
+        <td>Show the popover on hover.</td>
+        <td>"click"</td>
+      </tr>
+      <tr>
+        <td><code>data-popover-hover-delay="500"</code></td>
+        <td>Delay in milliseconds before showing the popover on hover.</td>
+        <td>150</td>
+      </tr>
+      <tr>
+        <td><code>data-popover-hover-out-delay="100"</code></td>
+        <td>Delay in milliseconds before hiding the popover on mouse leave.</td>
+        <td>150</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    <i>
+      Hover triggers automatically <b>fall back to click on touch devices</b>.
+    </i>
+  </p>
+
   <h2 id="placement">Placement</h2>
   <style>
     .example.placement {
@@ -198,50 +232,45 @@
     <code>DEFAULT_PLACEMENT_FALLBACK</code> variable.
   </p>
 
-  <h2 id="hover">Hover Triggers</h2>
+  <h2 id="styling">Styling</h2>
 
-  <div class="example">
-    <button data-popover data-popover-trigger="hover">Hover Me</button>
-    <div popover>Popover</div>
-    and
-    <a data-popover data-popover-trigger="hover" data-popover-hover-delay="500">
-      Me
-    </a>
-    <div popover>I appear after 500ms!</div>
+  <p>
+    Customize the appearance using the CSS variables at the top of
+    <a
+      href="https://github.com/imbolc/data-popover/blob/main/src/data-popover.css"
+      >data-popover.css</a
+    >.
+  </p>
+  <p>The following is an example of a dark theme:</p>
+
+  <div
+    style="
+      background: #2a2a2a;
+      padding: 2rem 5rem 5rem;
+      border-radius: 1rem;
+      text-align: center;
+    "
+  >
+    <style>
+      .dark-theme {
+        [data-popover] + [popover] {
+          --border-color: #444;
+          --bg-color: #1a1a1a;
+          color: #e0e0e0;
+        }
+        button {
+          background: #444;
+          color: #fff;
+          border: 1px solid #666;
+        }
+      }
+    </style>
+    <div class="dark-theme">
+      <button data-popover>Click Me</button>
+      <div popover>I'm dark!</div>
+    </div>
   </div>
   <details data-code></details>
-
-  <table border="1" cellpadding="7" cellspacing="0">
-    <thead>
-      <tr>
-        <th>Attribute</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>data-popover-trigger="hover"</code></td>
-        <td>Show the popover on hover.</td>
-        <td>"click"</td>
-      </tr>
-      <tr>
-        <td><code>data-popover-hover-delay="500"</code></td>
-        <td>Delay in milliseconds before showing the popover on hover.</td>
-        <td>150</td>
-      </tr>
-      <tr>
-        <td><code>data-popover-hover-out-delay="100"</code></td>
-        <td>Delay in milliseconds before hiding the popover on mouse leave.</td>
-        <td>150</td>
-      </tr>
-    </tbody>
-  </table>
-  <p>
-    <i>
-      Hover triggers automatically <b>fall back to click on touch devices</b>.
-    </i>
-  </p>
 
   <h2 id="htmx">HTMX integration</h2>
 
@@ -292,56 +321,6 @@
   </div>
   <details data-code></details>
 
-  <h2 id="styling">Styling</h2>
-
-  <p>
-    Customize the appearance using the CSS variables at the top of
-    <a
-      href="https://github.com/imbolc/data-popover/blob/main/src/data-popover.css"
-      >data-popover.css</a
-    >.
-  </p>
-  <p>The following is an example of a dark theme:</p>
-
-  <div
-    style="
-      background: #2a2a2a;
-      padding: 2rem 5rem 5rem;
-      border-radius: 1rem;
-      text-align: center;
-    "
-  >
-    <style>
-      .dark-theme {
-        [data-popover] + [popover] {
-          --border-color: #444;
-          --bg-color: #1a1a1a;
-          color: #e0e0e0;
-        }
-        button {
-          background: #444;
-          color: #fff;
-          border: 1px solid #666;
-        }
-      }
-    </style>
-    <div class="dark-theme">
-      <button data-popover>Click Me</button>
-      <div popover>I'm dark!</div>
-    </div>
-  </div>
-  <details data-code></details>
-
-  <h2 id="nested">Nested Popovers</h2>
-  <div class="example">
-    <button data-popover>Open Parent Popover</button>
-    <div popover>
-      <button data-popover="right">Open Nested Popover</button>
-      <div popover>This is a nested popover!</div>
-    </div>
-  </div>
-  <details data-code></details>
-
   <h2 id="recipes">Recipes</h2>
 
   <h3 id="recipes-scrollable-popover">Scrollable Popover</h3>
@@ -377,6 +356,17 @@
           ><i>The Interface Theory of Perception</i></a
         >
       </div>
+    </div>
+  </div>
+  <details data-code></details>
+
+  <h3 id="recepes-nested">Nested Popovers</h3>
+  <p>Nested popovers just work as expected.</p>
+  <div class="example">
+    <button data-popover>Open Parent Popover</button>
+    <div popover>
+      <button data-popover="right">Open Nested Popover</button>
+      <div popover>This is a nested popover!</div>
     </div>
   </div>
   <details data-code></details>
