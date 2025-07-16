@@ -98,12 +98,12 @@
 					this.popoverEl.addEventListener(
 						"animationend",
 						() => {
-							this.popoverEl.setAttribute("data-popover-animated", "true");
+							this.popoverEl.dataset.popoverAnimated = "true";
 						},
 						{ once: true },
 					);
 				} else {
-					this.popoverEl.removeAttribute("data-popover-animated");
+					delete this.popoverEl.dataset.popoverAnimated;
 				}
 			});
 
@@ -277,9 +277,11 @@
 				top += window.scrollY;
 
 				const leftChanged =
-					Math.round(this.popoverEl.style.left) !== Math.round(left);
+					Math.round(Number.parseFloat(this.popoverEl.style.left)) !==
+					Math.round(left);
 				const topChanged =
-					Math.round(this.popoverEl.style.top) !== Math.round(top);
+					Math.round(Number.parseFloat(this.popoverEl.style.top)) !==
+					Math.round(top);
 
 				if (leftChanged) {
 					this.popoverEl.style.left = `${left}px`;
@@ -289,8 +291,10 @@
 				}
 
 				if (leftChanged || topChanged) {
-					// The real popover placement used in styles
-					this.popoverEl.dataset.popoverLoc = shortPlacementName(bestPlacement);
+					const newPlacement = shortPlacementName(bestPlacement);
+					if (this.popoverEl.dataset.popoverLoc !== newPlacement) {
+						this.popoverEl.dataset.popoverLoc = newPlacement;
+					}
 				}
 			});
 		}
