@@ -24,7 +24,7 @@
     align-items: center;
 
     main {
-      max-width: 800px;
+      max-width: 767px;
       line-height: 1.5;
       color: #444;
 
@@ -47,6 +47,10 @@
         text-align: center;
         background: ghostwhite;
         border-radius: 1rem;
+
+        [popover] {
+          text-align: left;
+        }
       }
 
       details[data-code] {
@@ -330,6 +334,45 @@
     <div popover>
       <button data-popover="right">Open Nested Popover</button>
       <div popover>This is a nested popover!</div>
+    </div>
+  </div>
+  <details data-code></details>
+
+  <h2 id="recipes">Recipes</h2>
+
+  <h3 id="recipes-scrollable-popover">Scrollable Popover</h3>
+
+  <p>
+    To make a popover scrollable, apply <code>max-height</code> and
+    <code>overflow-y: auto</code> to a nested element inside the popover, not
+    the popover element itself.
+  </p>
+
+  <div class="example">
+    <button data-popover="top">Click me</button>
+    <div popover>
+      <div style="max-height: 10em; max-width: 30em; overflow-y: auto">
+        <p>
+          A goal of perception is to estimate true properties of the world. A
+          goal of categorization is to classify its structure. Aeons of
+          evolution have shaped our senses to this end. These three assumptions
+          motivate much work on human perception. I here argue, on evolutionary
+          grounds, that all three are false. Instead, our perceptions constitute
+          a species-specific user interface that guides behavior in a niche.
+          Just as the icons of a PC's interface hide the complexity of the
+          computer, so our perceptions usefully hide the com- plexity of the
+          world, and guide adaptive behavior. This interface theory of
+          perception offers a framework, motivated by evolution, to guide
+          research in object categorization. This framework informs a new class
+          of evolutionary games, called interface games, in which pithy
+          perceptions often drive true perceptions to extinction.
+        </p>
+        <a
+          href="https://sites.socsci.uci.edu/~ddhoff/interface.pdf"
+          target="_blank"
+          ><i>The Interface Theory of Perception</i></a
+        >
+      </div>
     </div>
   </div>
   <details data-code></details>
