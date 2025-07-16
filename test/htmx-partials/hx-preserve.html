@@ -5,18 +5,27 @@
   class="visialize-load"
 >
   <p>
-    This component reloads every 2 seconds. Open the popover to see that it's
+    This component reloads every two seconds. Open the popover to see that it is
     preserved between reloads.
   </p>
 
   <div hx-preserve id="htmx-preserve__popover-with-trigger">
     <button data-popover>Open Popover</button>
-    <div popover>
-      Content of this popover is preserved using <code>hx-preserve</code>.
-      <p>
-        Though inputs lose focus between updates:
-        <input type="text" value="Try to edit me" />
-      </p>
+    <div popover style="text-align: left">
+      The content of this popover is preserved using
+      <code>hx-preserve</code>.<br /><br />
+      However, between updates:<br />
+      inputs lose focus: <input type="text" value="Try to edit me" /><br />
+      and selections break: try to select me<br />
     </div>
   </div>
+
+  <p>
+    <i>Reloaded at <span data-now></span></i>
+    <script>
+      document.currentScript.parentElement.querySelector(
+        "[data-now]",
+      ).textContent = new Date();
+    </script>
+  </p>
 </div>

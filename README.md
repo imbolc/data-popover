@@ -1,14 +1,14 @@
 # data-popover
 
-A simple wrapper around the native Popover API.
+A lightweight wrapper around the native Popover API.
 
-Look at the [docs & demo](https://imbolc.github.io/data-popover/).
+Check out the [docs & demo](https://imbolc.github.io/data-popover/).
 
 ## Features
 
 - No dependencies
 - Declarative configuration via HTML attributes
-- Any element (not only buttons) works
+- Any element can be a trigger, not just buttons
   [as a trigger](https://imbolc.github.io/data-popover/#trigge-element)
 - [Placement preferences](https://imbolc.github.io/data-popover/#placement) with
   [auto flipping](https://imbolc.github.io/data-popover/#flipping)
@@ -19,7 +19,7 @@ Look at the [docs & demo](https://imbolc.github.io/data-popover/).
 
 ## Installation
 
-Download the minimized version from the [`./dist`](./dist) folder or use CDN:
+Download the minified version from the [`./dist`](./dist) folder or use a CDN:
 
 ```html
 <link
