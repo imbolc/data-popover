@@ -17,6 +17,7 @@
 <style>
   a {
     color: blue;
+    text-decoration: none;
   }
   body {
     display: flex;
@@ -62,6 +63,10 @@
       }
     }
   }
+
+  #toc ul ul {
+    padding-left: 1.5rem;
+  }
 </style>
 
 <main>
@@ -74,7 +79,11 @@
     <a href="https://www.npmjs.com/package/data-popover">npm</a>
   </p>
 
-  <h2 id="trigger-element">Trigger element</h2>
+  <div id="toc">
+    <h2>Table of Contents</h2>
+  </div>
+
+  <h2 id="trigger">Trigger element</h2>
 
   <p>
     You can use any element to trigger a popover. To do so, add the
@@ -272,7 +281,7 @@
   </div>
   <details data-code></details>
 
-  <h2 id="htmx">HTMX integration</h2>
+  <h2 id="htmx">HTMx integration</h2>
 
   <h3 id="htmx-lazy">Lazy-loading popover content</h3>
 
@@ -323,7 +332,7 @@
 
   <h2 id="recipes">Recipes</h2>
 
-  <h3 id="recipes-scrollable-popover">Scrollable Popover</h3>
+  <h3 id="scrollable-content">Scrollable Popover</h3>
 
   <p>
     To make a popover scrollable, apply <code>max-height</code> and
@@ -360,7 +369,7 @@
   </div>
   <details data-code></details>
 
-  <h3 id="recepes-nested">Nested Popovers</h3>
+  <h3 id="nested">Nested Popovers</h3>
   <p>Nested popovers just work as expected.</p>
   <div class="example">
     <button data-popover>Open Parent Popover</button>
@@ -371,6 +380,47 @@
   </div>
   <details data-code></details>
 </main>
+
+<footer style="text-align: center; padding: 2rem">
+  2025 🧍 + 🤖 with ♥️ in Tokmok 🇰🇬
+</footer>
+
+<script>
+  /// Create a TOC
+  (() => {
+    const tocContainer = document.getElementById("toc");
+    const headings = document.querySelectorAll("main h2, main h3");
+    const topLevelList = document.createElement("ul");
+    let currentH2Item = null;
+    let subList = null;
+
+    headings.forEach((heading) => {
+      if (!heading.id || heading.closest("#toc")) {
+        return;
+      }
+
+      const listItem = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = `#${heading.id}`;
+      link.textContent = heading.textContent;
+      listItem.appendChild(link);
+
+      if (heading.tagName === "H2") {
+        currentH2Item = listItem;
+        subList = null; // Reset for new H2 section
+        topLevelList.appendChild(listItem);
+      } else if (heading.tagName === "H3" && currentH2Item) {
+        if (!subList) {
+          subList = document.createElement("ul");
+          currentH2Item.appendChild(subList);
+        }
+        subList.appendChild(listItem);
+      }
+    });
+
+    tocContainer.appendChild(topLevelList);
+  })();
+</script>
 
 <script>
   /// Automatically feel code details from the previous sibling

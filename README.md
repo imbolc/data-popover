@@ -2,20 +2,11 @@
 
 A lightweight wrapper around the native Popover API.
 
-Check out the [docs & demo](https://imbolc.github.io/data-popover/).
-
-## Features
-
 - No dependencies
 - Declarative configuration via HTML attributes
-- Any element can be a trigger, not just buttons
-  [as a trigger](https://imbolc.github.io/data-popover/#trigge-element)
-- [Placement preferences](https://imbolc.github.io/data-popover/#placement) with
-  [auto flipping](https://imbolc.github.io/data-popover/#flipping)
-- [Pairs well with HTMx](https://imbolc.github.io/data-popover/#htmx)
-- [Supports hover event](https://imbolc.github.io/data-popover/#hover)
-- [Appearance customization](https://imbolc.github.io/data-popover/#styling)
-- [Nested Popovers](https://imbolc.github.io/data-popover/#nested)
+- Pairs well with HTMx
+
+Check out the [docs & demo](https://imbolc.github.io/data-popover/).
 
 ## Installation
 
