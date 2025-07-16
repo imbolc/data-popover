@@ -58,8 +58,10 @@
       }
 
       details[data-code] {
-        text-align: center;
-        margin: 1rem;
+        summary {
+          text-align: center;
+          margin: 1rem 0;
+        }
       }
     }
   }
@@ -435,7 +437,16 @@
     const sourceHtml = prev.innerHTML
       .trim()
       // don't show `=""` for empty attributes
-      .replace(/\s+([a-zA-Z0-9-]+)=["']["']/g, " $1");
+      .replace(/\s+([a-zA-Z0-9-]+)=["']["']/g, " $1")
+      // unindent
+      .split("\n")
+      .map((line) => {
+        if (line.startsWith("    ")) {
+          return line.slice(4);
+        }
+        return line;
+      })
+      .join("\n");
 
     const summary = document.createElement("summary");
     summary.textContent = "Show Code";
@@ -444,7 +455,7 @@
     const code = document.createElement("code");
 
     code.classList.add(`language-${language}`);
-    code.textContent = `    ${sourceHtml}`;
+    code.textContent = sourceHtml;
 
     pre.appendChild(code);
 
