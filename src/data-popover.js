@@ -86,7 +86,10 @@
 				this.popoverEl.id = `data-popover-${++popoverIdCounter}`;
 			}
 
-			if (this.trigger !== "hover") {
+			if (
+				this.trigger !== "hover" &&
+				this.triggerEl.getAttribute("popovertarget") === null
+			) {
 				this.triggerEl.setAttribute("popovertarget", this.popoverEl.id);
 			}
 
